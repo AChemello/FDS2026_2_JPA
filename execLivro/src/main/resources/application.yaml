@@ -1,0 +1,14 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: execLivro
+  datasource:
+    url: jdbc:postgresql://ep-raspy-boat-ac4llzo7-pooler.sa-east-1.aws.neon.tech/neondb?user=neondb_owner&password=npg_bX1pAFmeQw9Z&sslmode=require&channelBinding=require
+    username: neondb_owner
+    password: npg_bX1pAFmeQw9Z
+    driver-class-name: org.postgresql.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2-console

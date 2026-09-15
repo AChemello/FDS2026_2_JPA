@@ -1,0 +1,161 @@
+{
+    "info": {
+        "name": "execLivro - Biblioteca API",
+        "description": "Coleção de testes para a API Spring Boot do projeto execLivro (biblioteca).",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "https://opulent-zebra-4j9j7646wgxxf7wwq-8080.app.github.dev/"
+        }
+    ],
+    "item": [
+        {
+            "name": "Mensagem de boas-vindas",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        ""
+                    ]
+                },
+                "description": "Retorna a mensagem de boas-vindas da biblioteca."
+            },
+            "response": []
+        },
+        {
+            "name": "Listar livros",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/livros",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "livros"
+                    ]
+                },
+                "description": "Retorna a lista completa de livros cadastrados."
+            },
+            "response": []
+        },
+        {
+            "name": "Buscar livro por id",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/livros/100",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "livros",
+                        "100"
+                    ]
+                },
+                "description": "Busca um livro específico pelo id."
+            },
+            "response": []
+        },
+        {
+            "name": "Criar livro",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"id\": 200,\n    \"titulo\": \"Livro Novo\",\n    \"autor\": \"Fulano de Tal\",\n    \"ano\": 2024\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/livros",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "livros"
+                    ]
+                },
+                "description": "Cria um novo livro."
+            },
+            "response": []
+        },
+        {
+            "name": "Atualizar livro",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"titulo\": \"Aprendendo Spring-Boot 2a Edição\",\n    \"autor\": \"Huguinho Pato\",\n    \"ano\": 2024\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/livros/100",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "livros",
+                        "100"
+                    ]
+                },
+                "description": "Atualiza um livro existente pelo id."
+            },
+            "response": []
+        },
+        {
+            "name": "Listar autores",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/autores",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "autores"
+                    ]
+                },
+                "description": "Retorna a lista de autores únicos."
+            },
+            "response": []
+        },
+        {
+            "name": "Listar títulos",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/titulos",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "titulos"
+                    ]
+                },
+                "description": "Retorna a lista de títulos dos livros."
+            },
+            "response": []
+        }
+    ]
+}
