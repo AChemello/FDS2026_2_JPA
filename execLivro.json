@@ -7,7 +7,7 @@
     "variable": [
         {
             "key": "baseUrl",
-            "value": "https://opulent-zebra-4j9j7646wgxxf7wwq-8080.app.github.dev/"
+            "value": "https://opulent-zebra-4j9j7646wgxxf7wwq-8080.app.github.dev"
         }
     ],
     "item": [
@@ -18,12 +18,8 @@
                 "header": [],
                 "url": {
                     "raw": "{{baseUrl}}/",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        ""
-                    ]
+                    "host": ["{{baseUrl}}"],
+                    "path": [""]
                 },
                 "description": "Retorna a mensagem de boas-vindas da biblioteca."
             },
@@ -36,12 +32,8 @@
                 "header": [],
                 "url": {
                     "raw": "{{baseUrl}}/livros",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "livros"
-                    ]
+                    "host": ["{{baseUrl}}"],
+                    "path": ["livros"]
                 },
                 "description": "Retorna a lista completa de livros cadastrados."
             },
@@ -53,14 +45,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "{{baseUrl}}/livros/100",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "livros",
-                        "100"
-                    ]
+                    "raw": "{{baseUrl}}/livros/10",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["livros", "10"]
                 },
                 "description": "Busca um livro específico pelo id."
             },
@@ -71,53 +58,32 @@
             "request": {
                 "method": "POST",
                 "header": [
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                    }
+                    { "key": "Content-Type", "value": "application/json" }
                 ],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\n    \"id\": 200,\n    \"titulo\": \"Livro Novo\",\n    \"autor\": \"Fulano de Tal\",\n    \"ano\": 2024\n}"
+                    "raw": "{\n    \"id\": 200,\n    \"titulo\": \"Livro Novo\",\n    \"autor\": { \"id\": 1 },\n    \"ano\": 2024\n}"
                 },
                 "url": {
                     "raw": "{{baseUrl}}/livros",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "livros"
-                    ]
+                    "host": ["{{baseUrl}}"],
+                    "path": ["livros"]
                 },
-                "description": "Cria um novo livro."
+                "description": "Cria um novo livro. O campo autor referencia o id de um Autor já existente no banco."
             },
             "response": []
         },
         {
-            "name": "Atualizar livro",
+            "name": "Remover livro",
             "request": {
-                "method": "PUT",
-                "header": [
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{\n    \"titulo\": \"Aprendendo Spring-Boot 2a Edição\",\n    \"autor\": \"Huguinho Pato\",\n    \"ano\": 2024\n}"
-                },
+                "method": "DELETE",
+                "header": [],
                 "url": {
-                    "raw": "{{baseUrl}}/livros/100",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "livros",
-                        "100"
-                    ]
+                    "raw": "{{baseUrl}}/livros/200",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["livros", "200"]
                 },
-                "description": "Atualiza um livro existente pelo id."
+                "description": "Remove um livro pelo id. Retorna 204 se removido, 404 se não existir."
             },
             "response": []
         },
@@ -128,32 +94,66 @@
                 "header": [],
                 "url": {
                     "raw": "{{baseUrl}}/autores",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "autores"
-                    ]
+                    "host": ["{{baseUrl}}"],
+                    "path": ["autores"]
                 },
-                "description": "Retorna a lista de autores únicos."
+                "description": "Retorna a lista de nomes de autores."
             },
             "response": []
         },
         {
-            "name": "Listar títulos",
+            "name": "Livros por autor e ano",
             "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "{{baseUrl}}/titulos",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "titulos"
-                    ]
+                    "raw": "{{baseUrl}}/livros/autor/Huguinho Pato/ano/2022",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["livros", "autor", "Huguinho Pato", "ano", "2022"]
                 },
-                "description": "Retorna a lista de títulos dos livros."
+                "description": "Retorna títulos de um autor num ano específico. Também registra a consulta nas estatísticas."
+            },
+            "response": []
+        },
+        {
+            "name": "Autor mais consultado",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/autorMaisConsultado",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["autorMaisConsultado"]
+                },
+                "description": "Retorna o autor mais consultado até o momento."
+            },
+            "response": []
+        },
+        {
+            "name": "Autor menos consultado",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/autorMenosConsultado",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["autorMenosConsultado"]
+                },
+                "description": "Retorna o autor menos consultado até o momento."
+            },
+            "response": []
+        },
+        {
+            "name": "Todas as contagens",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/todasAsContagens",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["todasAsContagens"]
+                },
+                "description": "Retorna o mapa completo de autor -> número de consultas."
             },
             "response": []
         }
