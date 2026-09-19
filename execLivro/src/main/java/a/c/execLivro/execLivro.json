@@ -1,13 +1,28 @@
 {
     "info": {
         "name": "execLivro - Biblioteca API",
-        "description": "Coleção completa de testes para a API Spring Boot do projeto execLivro (biblioteca).",
+        "description": "Coleção completa de testes para a API Spring Boot do projeto execLivro (biblioteca), com autenticação.",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "auth": {
+        "type": "basic",
+        "basic": [
+            { "key": "username", "value": "{{username}}", "type": "string" },
+            { "key": "password", "value": "{{password}}", "type": "string" }
+        ]
     },
     "variable": [
         {
             "key": "baseUrl",
             "value": "https://stunning-guacamole-wrjr7x6xg9gphgww9-8080.app.github.dev"
+        },
+        {
+            "key": "username",
+            "value": "admin"
+        },
+        {
+            "key": "password",
+            "value": "admin123"
         }
     ],
     "item": [
@@ -19,8 +34,7 @@
                     "request": {
                         "method": "GET",
                         "header": [],
-                        "url": { "raw": "{{baseUrl}}/", "host": ["{{baseUrl}}"], "path": [""] },
-                        "description": "Retorna a mensagem de boas-vindas da biblioteca."
+                        "url": { "raw": "{{baseUrl}}/", "host": ["{{baseUrl}}"], "path": [""] }
                     },
                     "response": []
                 },
@@ -29,8 +43,7 @@
                     "request": {
                         "method": "GET",
                         "header": [],
-                        "url": { "raw": "{{baseUrl}}/livros", "host": ["{{baseUrl}}"], "path": ["livros"] },
-                        "description": "Retorna a lista completa de livros, cada um com o objeto autor aninhado."
+                        "url": { "raw": "{{baseUrl}}/livros", "host": ["{{baseUrl}}"], "path": ["livros"] }
                     },
                     "response": []
                 },
@@ -39,13 +52,12 @@
                     "request": {
                         "method": "GET",
                         "header": [],
-                        "url": { "raw": "{{baseUrl}}/livros/10", "host": ["{{baseUrl}}"], "path": ["livros", "10"] },
-                        "description": "Busca um livro específico pelo id."
+                        "url": { "raw": "{{baseUrl}}/livros/10", "host": ["{{baseUrl}}"], "path": ["livros", "10"] }
                     },
                     "response": []
                 },
                 {
-                    "name": "Criar livro",
+                    "name": "Criar livro (ADMIN)",
                     "request": {
                         "method": "POST",
                         "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -53,13 +65,12 @@
                             "mode": "raw",
                             "raw": "{\n    \"id\": 200,\n    \"titulo\": \"Livro Novo\",\n    \"autor\": { \"id\": 1 },\n    \"ano\": 2024\n}"
                         },
-                        "url": { "raw": "{{baseUrl}}/livros", "host": ["{{baseUrl}}"], "path": ["livros"] },
-                        "description": "Cria um novo livro. O autor referencia o id de um Autor já existente."
+                        "url": { "raw": "{{baseUrl}}/livros", "host": ["{{baseUrl}}"], "path": ["livros"] }
                     },
                     "response": []
                 },
                 {
-                    "name": "Atualizar livro",
+                    "name": "Atualizar livro (ADMIN)",
                     "request": {
                         "method": "PUT",
                         "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -67,18 +78,16 @@
                             "mode": "raw",
                             "raw": "{\n    \"id\": 200,\n    \"titulo\": \"Livro Atualizado\",\n    \"autor\": { \"id\": 1 },\n    \"ano\": 2025\n}"
                         },
-                        "url": { "raw": "{{baseUrl}}/livros/200", "host": ["{{baseUrl}}"], "path": ["livros", "200"] },
-                        "description": "Atualiza um livro existente pelo id."
+                        "url": { "raw": "{{baseUrl}}/livros/200", "host": ["{{baseUrl}}"], "path": ["livros", "200"] }
                     },
                     "response": []
                 },
                 {
-                    "name": "Remover livro",
+                    "name": "Remover livro (ADMIN)",
                     "request": {
                         "method": "DELETE",
                         "header": [],
-                        "url": { "raw": "{{baseUrl}}/livros/200", "host": ["{{baseUrl}}"], "path": ["livros", "200"] },
-                        "description": "Remove um livro pelo id. 204 se removido, 404 se não existir."
+                        "url": { "raw": "{{baseUrl}}/livros/200", "host": ["{{baseUrl}}"], "path": ["livros", "200"] }
                     },
                     "response": []
                 }
@@ -92,8 +101,7 @@
                     "request": {
                         "method": "GET",
                         "header": [],
-                        "url": { "raw": "{{baseUrl}}/autores", "host": ["{{baseUrl}}"], "path": ["autores"] },
-                        "description": "Retorna a lista de nomes de autores."
+                        "url": { "raw": "{{baseUrl}}/autores", "host": ["{{baseUrl}}"], "path": ["autores"] }
                     },
                     "response": []
                 },
@@ -106,8 +114,7 @@
                             "raw": "{{baseUrl}}/livros/autor/Huguinho Pato/ano/2022",
                             "host": ["{{baseUrl}}"],
                             "path": ["livros", "autor", "Huguinho Pato", "ano", "2022"]
-                        },
-                        "description": "Retorna títulos de um autor num ano específico. Registra a consulta nas estatísticas."
+                        }
                     },
                     "response": []
                 },
@@ -116,8 +123,7 @@
                     "request": {
                         "method": "GET",
                         "header": [],
-                        "url": { "raw": "{{baseUrl}}/autorMaisConsultado", "host": ["{{baseUrl}}"], "path": ["autorMaisConsultado"] },
-                        "description": "Retorna o autor mais consultado até o momento."
+                        "url": { "raw": "{{baseUrl}}/autorMaisConsultado", "host": ["{{baseUrl}}"], "path": ["autorMaisConsultado"] }
                     },
                     "response": []
                 },
@@ -126,8 +132,7 @@
                     "request": {
                         "method": "GET",
                         "header": [],
-                        "url": { "raw": "{{baseUrl}}/autorMenosConsultado", "host": ["{{baseUrl}}"], "path": ["autorMenosConsultado"] },
-                        "description": "Retorna o autor menos consultado até o momento."
+                        "url": { "raw": "{{baseUrl}}/autorMenosConsultado", "host": ["{{baseUrl}}"], "path": ["autorMenosConsultado"] }
                     },
                     "response": []
                 },
@@ -136,18 +141,17 @@
                     "request": {
                         "method": "GET",
                         "header": [],
-                        "url": { "raw": "{{baseUrl}}/todasAsContagens", "host": ["{{baseUrl}}"], "path": ["todasAsContagens"] },
-                        "description": "Retorna o mapa completo de autor -> número de consultas."
+                        "url": { "raw": "{{baseUrl}}/todasAsContagens", "host": ["{{baseUrl}}"], "path": ["todasAsContagens"] }
                     },
                     "response": []
                 }
             ]
         },
         {
-            "name": "Usuarios",
+            "name": "Usuarios (biblioteca)",
             "item": [
                 {
-                    "name": "Cadastrar usuario",
+                    "name": "Cadastrar usuario (ADMIN)",
                     "request": {
                         "method": "POST",
                         "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -155,8 +159,7 @@
                             "mode": "raw",
                             "raw": "{\n    \"id\": 1,\n    \"nome\": \"Maria Silva\"\n}"
                         },
-                        "url": { "raw": "{{baseUrl}}/usuarios", "host": ["{{baseUrl}}"], "path": ["usuarios"] },
-                        "description": "Cria um novo usuário da biblioteca. Valida nome (NotBlank, 3-80 chars) e id positivo."
+                        "url": { "raw": "{{baseUrl}}/usuarios", "host": ["{{baseUrl}}"], "path": ["usuarios"] }
                     },
                     "response": []
                 },
@@ -165,8 +168,7 @@
                     "request": {
                         "method": "GET",
                         "header": [],
-                        "url": { "raw": "{{baseUrl}}/usuarios/1", "host": ["{{baseUrl}}"], "path": ["usuarios", "1"] },
-                        "description": "Busca um usuário pelo id."
+                        "url": { "raw": "{{baseUrl}}/usuarios/1", "host": ["{{baseUrl}}"], "path": ["usuarios", "1"] }
                     },
                     "response": []
                 },
@@ -175,26 +177,35 @@
                     "request": {
                         "method": "GET",
                         "header": [],
-                        "url": {
-                            "raw": "{{baseUrl}}/usuarios/1/livros-lidos",
-                            "host": ["{{baseUrl}}"],
-                            "path": ["usuarios", "1", "livros-lidos"]
-                        },
-                        "description": "Lista os livros que o usuário já leu. Retorna [] se nenhum, 404 se usuário não existe."
+                        "url": { "raw": "{{baseUrl}}/usuarios/1/livrosLidos", "host": ["{{baseUrl}}"], "path": ["usuarios", "1", "livros-lidos"] }
                     },
                     "response": []
                 },
                 {
-                    "name": "Marcar livro como lido",
+                    "name": "Marcar livro como lido (ADMIN ou CONSULTA)",
                     "request": {
                         "method": "PUT",
                         "header": [],
-                        "url": {
-                            "raw": "{{baseUrl}}/usuarios/1/livros-lidos/10",
-                            "host": ["{{baseUrl}}"],
-                            "path": ["usuarios", "1", "livros-lidos", "10"]
+                        "url": { "raw": "{{baseUrl}}/usuarios/1/livrosLidos/10", "host": ["{{baseUrl}}"], "path": ["usuarios", "1", "livros-lidos", "10"] }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Usuarios do Sistema (autenticação)",
+            "item": [
+                {
+                    "name": "Cadastrar usuario do sistema (ADMIN)",
+                    "request": {
+                        "method": "POST",
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"bibliotecario1\",\n    \"senha\": \"senha123\",\n    \"perfil\": \"CONSULTA\"\n}"
                         },
-                        "description": "Marca o livro (id 10) como lido pelo usuário (id 1). Retorna 204."
+                        "url": { "raw": "{{baseUrl}}/usuarios-sistema", "host": ["{{baseUrl}}"], "path": ["usuarios-sistema"] },
+                        "description": "Só ADMIN pode cadastrar novos funcionários do sistema."
                     },
                     "response": []
                 }
